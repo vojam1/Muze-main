@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: "Roboto", sans-serif;
+    height: 100%;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7vh;
+}
+
+
+.header a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    text-decoration: none;
+    color: gray;
+    font-size: 2em;
+    border-bottom: 1px double gray;
+    border-right: 1px double gray;
+}
+
+.main-body{
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.body-title{
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+}
+
+.input-field{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.input-field input{
+    font-size: 1.2em;
+    border-radius: 10px;
+    width: 50%;
+    height: 40px;
+    padding: 10px;
+}
+
+.button-field{
+    display: flex;
+    width: 50%;
+    justify-content: space-evenly;
+    margin-top: 50px;
+}
+
+.button-field button{
+    width: 275px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.button-field #selectFolder svg{
+    margin-right: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.button-field #download svg{
+    margin-left: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.download-format{
+    display: flex;
+    width: 20%;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 3vh;
+    margin-top: 30px;
+    font-size: 2em;
+}
+
+input[type="radio"]{
+    accent-color: rgb(63, 63, 63);
+}

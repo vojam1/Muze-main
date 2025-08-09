@@ -1,0 +1,15 @@
+{
+  "name": "muze",
+  "version": "1.0.0",
+  "description": "Music player with an integrated youtube to mp3 converter.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vojin Milenkovic",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^37.2.5"
+  }
+}

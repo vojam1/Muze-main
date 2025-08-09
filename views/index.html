@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/main.css"/>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+    </style>
+    <title>Muze</title>
+</head>
+<body>
+    <div id="container">
+        <header class="header">
+            <a href="#">
+                <p>Converter</p>
+            </a>
+            <a href="player.html">
+                <p>Player</p>
+            </a>
+        </header>
+        <div class="main-body">
+            <div class="body-title">
+                <h1>Youtube Video Converter</h1>
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="144" height="144" viewBox="0 0 48 48">
+                    <path fill="#FF3D00" d="M43.2,33.9c-0.4,2.1-2.1,3.7-4.2,4c-3.3,0.5-8.8,1.1-15,1.1c-6.1,0-11.6-0.6-15-1.1c-2.1-0.3-3.8-1.9-4.2-4C4.4,31.6,4,28.2,4,24c0-4.2,0.4-7.6,0.8-9.9c0.4-2.1,2.1-3.7,4.2-4C12.3,9.6,17.8,9,24,9c6.2,0,11.6,0.6,15,1.1c2.1,0.3,3.8,1.9,4.2,4c0.4,2.3,0.9,5.7,0.9,9.9C44,28.2,43.6,31.6,43.2,33.9z"></path><path fill="#FFF" d="M20 31L20 17 32 24z"></path>
+                </svg>
+            </div>
+            <div class="input-field">
+                <input type="text" id="playlistInput" placeholder="Enter video/playlist link....">
+            </div>
+            <div class="download-format">
+                    <div>
+                        <input type="radio" id="MP3" name="format" value="mp3" checked> 
+                        <label for="MP3">MP3</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="MP4" name="format" value="mp4">
+                        <label for="MP4">MP4</label>
+                    </div>
+            </div>
+            <div class="button-field">
+                <button type="button" id="selectFolder">
+                <p>Select download folder</p>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" version="1.1" id="Ebene_1" width="800px" height="800px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                <g>
+                    <path d="M0,46c0,1.104,0.896,2,2,2h22c1.104,0,2-0.896,2-2s-0.896-2-2-2H4V4h17.171l7.415,7.414C28.961,11.789,29.47,12,30,12h30   v32H40c-1.104,0-2,0.896-2,2s0.896,2,2,2h22c1.104,0,2-0.896,2-2V10c0-1.104-0.896-2-2-2H30.829l-7.415-7.414   C23.039,0.211,22.53,0,22,0H2C0.896,0,0,0.896,0,2V46z"/>
+                    <path d="M32,28c-1.104,0-2,0.896-2,2v27.171l-4.586-4.585c-0.78-0.781-2.048-0.781-2.828,0c-0.781,0.781-0.781,2.047,0,2.828l8,8   C30.976,63.805,31.488,64,32,64s1.024-0.195,1.414-0.586l8-8c0.781-0.781,0.781-2.047,0-2.828c-0.78-0.781-2.048-0.781-2.828,0   L34,57.171V30C34,28.896,33.104,28,32,28z"/>
+                </g>
+                </svg>
+                </button>
+                <button type="button" id="download">
+                    <p>Download</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 24 24" fill="none">
+                    <path d="M17 17H17.01M17.4 14H18C18.9319 14 19.3978 14 19.7654 14.1522C20.2554 14.3552 20.6448 14.7446 20.8478 15.2346C21 15.6022 21 16.0681 21 17C21 17.9319 21 18.3978 20.8478 18.7654C20.6448 19.2554 20.2554 19.6448 19.7654 19.8478C19.3978 20 18.9319 20 18 20H6C5.06812 20 4.60218 20 4.23463 19.8478C3.74458 19.6448 3.35523 19.2554 3.15224 18.7654C3 18.3978 3 17.9319 3 17C3 16.0681 3 15.6022 3.15224 15.2346C3.35523 14.7446 3.74458 14.3552 4.23463 14.1522C4.60218 14 5.06812 14 6 14H6.6M12 15V4M12 15L9 12M12 15L15 12" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <script src="../renderer.js"></script>
+    </div>
+</body>
+</html>
