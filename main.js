@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const child_process = require('child_process');
 const path = require('node:path')
-const fs = require('fs')
+const fs = require('fs').promises
 
 let mainWindow = null
 
@@ -81,15 +81,34 @@ function handleDownload(event, playlistName, selectedFolder, format){
 app.whenReady().then(() => {
     ipcMain.on('download', handleDownload)
 
-   ipcMain.handle('selectFolder', async (event) => {
-      const result = await dialog.showOpenDialog({
-        properties: ['openDirectory'] // Specify that only directories can be selected
-      });
+    ipcMain.handle('selectFolder', async (event) => {
+        const result = await dialog.showOpenDialog({
+            properties: ['openDirectory'] // Specify that only directories can be selected
+        });
 
-      if (!result.canceled && result.filePaths.length > 0) {
-        return result.filePaths[0]; // Return the path of the selected directory
-      }
-      return null; // Return null if the dialog was canceled
+        if (!result.canceled && result.filePaths.length > 0) {
+            return result.filePaths[0]; 
+        }
+        return null; 
+    });
+
+
+    ipcMain.handle('selectSongs', async (event) => {
+        const result = await dialog.showOpenDialog({
+            properties: ['openDirectory'],
+        });
+
+        let songArray = [];
+
+        if(!result.canceled && result.filePaths.length > 0){
+            try {
+                const files = await fs.readdir(result.filePaths[0]);
+                songArray = files.map(file => result.filePaths[0] + '/' + file);
+            } catch (err) {
+                console.error('Error reading directory:', err);
+            }
+        }
+        return songArray; 
     });
 
     createWindow()

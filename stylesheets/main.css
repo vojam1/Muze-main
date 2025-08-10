@@ -35,6 +35,10 @@ body{
     border-right: 1px double gray;
 }
 
+.active-nav p{
+    color: rgb(46, 45, 45);
+}
+
 .main-body{
     height: 70vh;
     display: flex;
