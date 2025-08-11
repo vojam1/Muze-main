@@ -10,6 +10,8 @@ selectFolderBtn.addEventListener('click', async () =>{
 
 downloadBtn.addEventListener('click', () => {
     let format = document.querySelector("input[name=format]:checked").value
+    document.getElementById("downloadStatus").innerHTML = "Downloading in progress..."
+    document.getElementById("downloadStatus").style.color = "green"
     window.electronAPI.download(playlistInput.value, selectedFolder, format)
 }) 
 

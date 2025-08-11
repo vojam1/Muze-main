@@ -10,6 +10,7 @@
   "author": "Vojin Milenkovic",
   "license": "ISC",
   "dependencies": {
-    "electron": "^37.2.5"
+    "electron": "^37.2.5",
+    "jsmediatags": "^3.9.7"
   }
 }

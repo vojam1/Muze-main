@@ -2,6 +2,8 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const child_process = require('child_process');
 const path = require('node:path')
 const fs = require('fs').promises
+var jsmediatags = require("jsmediatags");
+
 
 let mainWindow = null
 
@@ -41,13 +43,13 @@ function run_script(command, args, callback) {
     child.stdout.on('data', (data) => {
         //Here is the output
         data=data.toString();   
-        console.log(data);      
+        console.log(data);     
     });
 
     child.stderr.setEncoding('utf8');
     child.stderr.on('data', (data) => {
         // Return some data to the renderer process with the mainprocess-response ID
-        mainWindow.webContents.send('mainprocess-response', data);
+        mainWindow.webContents.send('error-response', data);
         //Here is the output from the command
         console.log(data);  
     });
@@ -57,10 +59,11 @@ function run_script(command, args, callback) {
         switch (code) {
             case 0:
                 dialog.showMessageBox({
-                    title: 'Title',
+                    title: 'Download finished',
                     type: 'info',
-                    message: 'End process.\r\n'
+                    message: 'Downloaded successfully!\r\n'
                 });
+                mainWindow.webContents.send('download-finished');
                 break;
         }
 
@@ -74,12 +77,48 @@ function handleDownload(event, playlistName, selectedFolder, format){
     if(format == "mp3"){
         run_script(`yt-dlp --embed-thumbnail --embed-metadata -x --audio-format mp3 -P ${selectedFolder} ${playlistName} `, [""], null);
     } else if (format == "mp4"){
-         run_script(`yt-dlp --format mp4 -P ${selectedFolder} ${playlistName} `, [""], null);
+         run_script(`yt-dlp --embed-thumbnail --embed-metadata --format mp4 -P ${selectedFolder} ${playlistName} `, [""], null);
     }
 }
 
+
 app.whenReady().then(() => {
     ipcMain.on('download', handleDownload)
+
+    ipcMain.handle('readMetadata', (event, file) => {
+        return new Promise((resolve, reject) => {
+        jsmediatags.read(file, {
+        onSuccess: tag => {
+            const picture = tag.tags.picture;
+            if (picture) {
+                let base64String = "";
+                const byteArray = picture.data;
+                const len = byteArray.length;
+                for (let i = 0; i < len; i++) {
+                    base64String += String.fromCharCode(byteArray[i]);
+                }
+                const base64 = btoa(base64String);
+                const imageUrl = `data:${picture.format};base64,${base64}`;
+                
+                resolve({
+                    artist: tag.tags.artist,
+                    title: tag.tags.title,
+                    picture: imageUrl // Send this back to renderer
+                });
+            } else {
+                resolve({
+                    artist: tag.tags.artist,
+                    title: tag.tags.title,
+                    picture: null
+                });
+            }
+        },
+        onError: error => {
+            reject(error);
+        }
+    });
+    });
+    });
 
     ipcMain.handle('selectFolder', async (event) => {
         const result = await dialog.showOpenDialog({
