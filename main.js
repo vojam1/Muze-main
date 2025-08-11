@@ -75,9 +75,9 @@ function run_script(command, args, callback) {
 function handleDownload(event, playlistName, selectedFolder, format){
     if(selectedFolder == null) selectedFolder = __dirname;
     if(format == "mp3"){
-        run_script(`yt-dlp --embed-thumbnail --embed-metadata -x --audio-format mp3 -P ${selectedFolder} ${playlistName} `, [""], null);
+        run_script(`yt-dlp --embed-thumbnail --embed-metadata -x --audio-format mp3 -P "${selectedFolder}" ${playlistName} `, [""], null);
     } else if (format == "mp4"){
-         run_script(`yt-dlp --embed-thumbnail --embed-metadata --format mp4 -P ${selectedFolder} ${playlistName} `, [""], null);
+         run_script(`yt-dlp --embed-thumbnail --embed-metadata --format mp4 -P "${selectedFolder}" ${playlistName} `, [""], null);
     }
 }
 
